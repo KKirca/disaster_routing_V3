@@ -40,3 +40,20 @@ def shortest_route(G, a_latlon, b_latlon):
         return None, None
     length = sum(edge_cost(u, v, G[u][v]) for u, v in zip(path[:-1], path[1:]))
     return path, length
+
+
+from shapely.ops import unary_union
+
+
+def close_edges_near(G, polygons, R=25.0):
+    # polygons: grafla ayni CRS'te (UTM, metre) destroyed bina poligonlari.
+    # Kenar geometrisine R metreden yakin poligon varsa kenar kapanir.
+    # mesafe(kenar, poligon) <= R  <=>  kenar, R kadar genisletilmis poligonla kesisir.
+    if not polygons:
+        return 0
+    danger = unary_union([p.buffer(R) for p in polygons])
+    edges = ox.graph_to_gdfs(G, nodes=False)
+    hit = edges.index[edges.intersects(danger)]
+    for u, v, k in hit:
+        G[u][v][k]["closed"] = True
+    return len(hit)
