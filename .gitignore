@@ -1,0 +1,9 @@
+data/
+checkpoints/
+outputs/
+*.pth
+*.tif
+*.tiff
+*.graphml
+__pycache__/
+*.pyc
