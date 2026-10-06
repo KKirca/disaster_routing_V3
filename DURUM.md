@@ -40,3 +40,25 @@ Karar: sistem 3 kanal modelle devam ediyor (tek goruntu hedefi + daha yuksek rec
 2. run_pipeline.py ile gercek goruntu; GSD kontrolu (kare piksel uyarisi cikmamali)
 3. Tez analizleri: R ve esik duyarliligi, nesne duzeyinde recall, 3 seed, veri artirma
 - Not: kapali kenar = kavsaktan kavsaga tum segment; "kapanan yol uzunlugu" metrigi bu yuzden abartili
+
+## 2026-10-06 aksam durumu
+### Sistem (dogrulandi)
+- GeoTIFF girdi (Maxar), kademeli kural (guclu=kapat, zayif=gecikme +100 m), en buyuk SCC, temizleme rotasi
+- Testler: T1-T9 hepsi geciyor
+### Test sahasi: Kahramanmaras merkez, 1 km, A=(37.5765, 36.9260) B=(37.5835, 36.9340)
+- Kirpim: tools/crop_maxar.py <katalog> 37.58 36.93 1000
+| goruntu | katalog | tespit | guclu | kapali | sonuc |
+|---|---|---|---|---|---|
+| 2022-07-26 (deprem oncesi) | 10300100D797E100 | 84 | 17 | 51 | 3 segment temizle |
+| 2023-02-11 | 10300100E19A4400 | 69 | 11 | 18 | 1 segment temizle |
+| 2023-02-28 | 10300100E3154100 | 181 | 102 | 177 | 9 segment temizle |
+- Islahiye (1040010082698700) calismadan cikarildi; agac ve demiryolu yanlis alarmlarinin ornegi olarak saklaniyor
+### ANA BULGU (negatif kontrol)
+- Deprem oncesi goruntude (enkaz yok) 84 tespit > 11 Subat'ta 69 tespit
+- 3 kanal model bu Maxar sahasinda yanlis alarm tabaninin uzerinde sinyal uretmiyor: enkaz yerine dokuyu (agac, cati ekipmani, toprak) buluyor
+- Renk normalizasyonu deneyi: model renge duyarli (11 Subat tespitleri -%57), ama tarih farkini aciklamiyor
+
+## SIRADAKI KARAR (buradan devam)
+1. 6 kanal modeli bu sahada test et (2022 oncesi + 2023 sonrasi, ayni piksel izgarasi). Saglama: 2022+2022 -> ~0 tespit beklenir. Not: "tek goruntu" hedefinden sapma, karar kullanicida
+2. 3 kanal modeli zor negatiflerle yeniden egit: baska karolardan deprem oncesi Maxar (etiket = tamamen 0) + renk artirmasi. Test sahasinin 2022 goruntusu egitime GIRMEYECEK
+3. Uc model ayni negatif kontrolle karsilastirilacak
