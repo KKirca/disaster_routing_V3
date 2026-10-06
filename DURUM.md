@@ -17,3 +17,15 @@
 - Model secimi val loss'a gore; Dice ile ayni epoch'u secmeyebilir
 - KATE-CD GSD'si (m/piksel) bulunacak, girdi goruntusu ile karsilastirilacak
 - Veri artirma kodu eski egitimde olu bayrakti; artirma yapilmadi
+
+## Model karsilastirmasi (2026-10-05, test seti, esik 0.5, global)
+| model | dice | iou | precision | recall |
+|---|---|---|---|---|
+| 6 kanal | 0.4523 | 0.2922 | 0.7981 | 0.3156 |
+| 3 kanal | 0.4897 | 0.3243 | 0.6289 | 0.4010 |
+Karar: sistem 3 kanal modelle devam ediyor (tek goruntu hedefi + daha yuksek recall).
+
+## Ek acik konular
+- Fark tek egitime dayaniyor: her model 3 seed ile egitilip ort +- std raporlanmali
+- Nesne duzeyinde recall (bina basina) hesaplanmali; rotalama icin piksel recall'dan daha anlamli
+- 3 kanal egitiminde asiri uyum: son epochlarda train dice ~0.79, val dice ~0.46-0.51
