@@ -62,3 +62,19 @@ Karar: sistem 3 kanal modelle devam ediyor (tek goruntu hedefi + daha yuksek rec
 1. 6 kanal modeli bu sahada test et (2022 oncesi + 2023 sonrasi, ayni piksel izgarasi). Saglama: 2022+2022 -> ~0 tespit beklenir. Not: "tek goruntu" hedefinden sapma, karar kullanicida
 2. 3 kanal modeli zor negatiflerle yeniden egit: baska karolardan deprem oncesi Maxar (etiket = tamamen 0) + renk artirmasi. Test sahasinin 2022 goruntusu egitime GIRMEYECEK
 3. Uc model ayni negatif kontrolle karsilastirilacak
+
+## 2026-10-06 gece: 6 kanal saha testi ve KARAR
+| model | 2022 (enkaz yok) | 2023-02-11 | 2023-02-28 |
+|---|---|---|---|
+| 3 kanal | 84 tespit | 69 | 181 |
+| 6 kanal (once=2022) | 0 (ayni goruntu, saglama) | 5 (hepsi zayif) | 20 |
+- 6 kanal: yanlis alarm yok ama buyuk enkaz bolgelerini kaciriyor; rota coken seritten geciyor (tehlikeli)
+- Esiksiz olasilik haritasi: pikselin %98.5'i < 0.05; enkaz bolgelerinde sinyal yok -> esik sorunu degil
+- Sonuc: iki model de Maxar sahasinda alan kaymasi nedeniyle calismiyor (KATE-CD Dice 0.45-0.49 sahaya tasinmiyor)
+
+## KARAR (2026-10-06): Yol 1, 2 gun kaldi
+- Yeniden egitim yok. Model KATE-CD sonuclariyla, rotalama testlerle raporlanacak
+- Rotalama gosterimi: EMSR648 uzman hasar poligonlari dogrudan girdi
+- Saha deneyi (negatif kontrol + 6 kanal) "alan kaymasi" bulgusu olarak raporlanacak, gelecek calisma: EBD ile yeniden egitim
+- Maxar rota gorselleri negatif kontrol olmadan "sistem ciktisi" olarak SUNULMAYACAK
+## Gun 1: EMSR648 -> rotalama, R duyarliligi (10/25/40) | Gun 2: tablo/sekil toplama, yazim
