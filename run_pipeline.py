@@ -26,8 +26,15 @@ def load_input(image_path, bbox=None):
     return img, from_bounds(*bbox, W, H), "EPSG:4326", tuple(bbox)
 
 
-def run(image_path, bbox, a, b, R=25.0, thr=0.5, min_area=10.0):
+def run(image_path, bbox, a, b, R=25.0, thr=0.5, min_area=10.0, pre_path=None):
     img, T, src_crs, ll = load_input(image_path, bbox)
+    model_in = img
+    if pre_path is not None:
+        with rasterio.open(pre_path) as pr:
+            assert pr.crs == src_crs and pr.transform == T and (pr.height, pr.width) == img.shape[:2], \
+                "Oncesi ve sonrasi goruntu ayni piksel izgarasinda degil"
+            pre = np.moveaxis(pr.read([1, 2, 3]), 0, -1)
+        model_in = np.concatenate([pre, img], axis=2)  # egitimdeki sira: [pre, post]
     H, W = img.shape[:2]
     G = load_graph(*ll)
     crs = G.graph["crs"]
@@ -38,7 +45,8 @@ def run(image_path, bbox, a, b, R=25.0, thr=0.5, min_area=10.0):
     if abs(gx - gy) / ((gx + gy) / 2) > 0.05:
         print("UYARI: piksel kare degil ({:.2f} x {:.2f} m): kose koordinatlari ile goruntu en-boy orani uyusmuyor olabilir".format(gx, gy))
     _, L0 = shortest_route(G, a, b)
-    prob = predict_prob(load_model(), img)
+    model = load_model("checkpoints/best_model.pth", 6) if pre_path else load_model()
+    prob = predict_prob(model, model_in)
     dets = detections(prob, T, src_crs, crs, thr=thr, min_area_m2=min_area)
     strong, weak = classify(dets)
     n = close_edges_near(G, strong, R=R)
@@ -111,10 +119,11 @@ if __name__ == "__main__":
     p.add_argument("--R", type=float, default=25.0)
     p.add_argument("--thr", type=float, default=0.5)
     p.add_argument("--min-area", type=float, default=10.0)
+    p.add_argument("--pre", default=None, help="Deprem oncesi GeoTIFF: verilirse 6 kanal model kullanilir")
     p.add_argument("--out", default="outputs/rota.png")
     args = p.parse_args()
     img, prob, G, path, T, src_crs, temizle = run(args.image, args.bbox, tuple(args.a), tuple(args.b),
-                                         args.R, args.thr, args.min_area)
+                                         args.R, args.thr, args.min_area, args.pre)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     draw(img, prob, G, path, T, src_crs, args.out, args.thr, temizle)
     print("Gorsel:", args.out)
