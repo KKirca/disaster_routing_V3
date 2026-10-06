@@ -29,3 +29,14 @@ Karar: sistem 3 kanal modelle devam ediyor (tek goruntu hedefi + daha yuksek rec
 - Fark tek egitime dayaniyor: her model 3 seed ile egitilip ort +- std raporlanmali
 - Nesne duzeyinde recall (bina basina) hesaplanmali; rotalama icin piksel recall'dan daha anlamli
 - 3 kanal egitiminde asiri uyum: son epochlarda train dice ~0.79, val dice ~0.46-0.51
+
+## 2026-10-06 durum
+- Siradaki adim 2-5 tamamlandi: infer.py (T6), georef.py (T7a-c), run_pipeline.py (uctan uca)
+- Duman testi (KATE-CD mozaik, sahte konum): rota kapali yollardan gecmiyor, kapali yollar tespitlerin yaninda (gorsel dogrulama)
+- TUM python komutlari LC_ALL=C ile calistirilmali (GDAL Turkce locale hatasi)
+
+## Siradaki adim (guncel)
+1. Gercek test goruntusu: Google Earth Pro, deprem sonrasi, tepeden (u), kuzey yukari (n), kose koordinatlari
+2. run_pipeline.py ile gercek goruntu; GSD kontrolu (kare piksel uyarisi cikmamali)
+3. Tez analizleri: R ve esik duyarliligi, nesne duzeyinde recall, 3 seed, veri artirma
+- Not: kapali kenar = kavsaktan kavsaga tum segment; "kapanan yol uzunlugu" metrigi bu yuzden abartili
