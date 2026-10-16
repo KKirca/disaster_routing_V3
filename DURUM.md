@@ -78,3 +78,11 @@ Karar: sistem 3 kanal modelle devam ediyor (tek goruntu hedefi + daha yuksek rec
 - Saha deneyi (negatif kontrol + 6 kanal) "alan kaymasi" bulgusu olarak raporlanacak, gelecek calisma: EBD ile yeniden egitim
 - Maxar rota gorselleri negatif kontrol olmadan "sistem ciktisi" olarak SUNULMAYACAK
 ## Gun 1: EMSR648 -> rotalama, R duyarliligi (10/25/40) | Gun 2: tablo/sekil toplama, yazim
+
+## 2026-10-16: sunum hazirligi
+- Karar: canli gosterim + tez/rapor ile destek. Maxar sahneleri (11 Subat, 28 Subat, Islahiye) + enkazsiz 2022 kontrol + 6 kanal canli calisacak
+- Prova yapildi, ag olmadan (proxy kapali) tum bloklar calisti: testler ~8 sn, EMSR ~2 sn, her Maxar sahnesi ~10 sn
+- Kontrol (2022, 3 kanal): 84 tespit (guclu 17), 51 kapanan kenar, 3 segment (322 m) -> 11 Subat'tan (1 segment, 95 m) bile fazla. Sunumda acikca soylenecek
+- Yedek: ~/sunum_yedek.tar.gz (367 MB: checkpoints, sunum, 4 Maxar tif) USB "oralcan"a kopyalandi, cmp ile dogrulandi
+- Canli komutlar: sunum/CANLI_AKIS.md | yedek gorseller: sunum/yedek/ (git disi)
+- Sirada: slayt dosyasi (10 slayt), juri sorulari, tez saha tablosuna 2022 kontrol sutunlari (guclu 17, kapanan 51, temizleme 322 m)

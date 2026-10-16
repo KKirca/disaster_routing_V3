@@ -11,3 +11,5 @@ cache/
 logs/*.out
 inputs/
 outputs/
+sunum/yedek/
+sunum/canli/
