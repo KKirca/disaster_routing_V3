@@ -25,6 +25,7 @@ Yorum cumleleri (bunlari yazabilirsin):
 - Hasar, rotayi hasarsiz duruma gore 82-253 m (%2-6) uzatti ve hicbir R degerinde A-B baglantisi kopmadi.
 - R=25 ve R=40 m icin secilen rota ayni; R'ye duyarlilik bu senaryoda 25 m'den sonra doygunluga ulasti.
 - Kapali kenar sayisi R ile arttigi icin R, hasarin yol agina yayilimini kontrol eden ana parametredir.
+- Sekil kontrolu (R=25): mavi rota kapali yollardan gecmiyor; kapali yollarin cogu yikik bloklara yakin, bir kume (sol alt) cizimde yikik bloga komsu gorunmuyor (R tamponu).
 Yorum cumleleri (bunlari YAZMA):
 - "Sistem gercek sahada dogrulandi" (hasar girdisi uzman verisi, model ciktisi degil).
 - V1 ile dogrudan karsilastirma ("V1 +475 m, V3 +253 m, V3 daha iyi"): kural, ag ve A-B noktalari farkli. Sadece "iki yontemde de sapma gozlendi" de.
