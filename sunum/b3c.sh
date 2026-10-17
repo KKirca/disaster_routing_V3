@@ -1,0 +1,1 @@
+cd ~/disaster_routing_V3 && LC_ALL=C python run_pipeline.py --image inputs/maxar_2023-02-07_1040010082698700.tif --a 37.0225 36.6275 --b 37.0295 36.6365 --out sunum/canli/3k_islahiye.png && xdg-open sunum/canli/3k_islahiye.png
